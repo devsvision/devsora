@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="id" class="scroll-smooth">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Register - DEVSORA</title>
+    <meta name="description" content="Buat akun DEVSORA AI platform.">
+    <meta name="robots" content="noindex, nofollow">
+    
+    <link rel="icon" href="/assets/icons/favicon.png" type="image/png">
+    <link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="preconnect" href="https://cdn.tailwindcss.com">
+    <link rel="preconnect" href="https://unpkg.com">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      window.tailwind = window.tailwind || {};
+      window.tailwind.config = { theme: { extend: { colors: { carbon: '#05050a', neon: '#a855f7', electric: '#38bdf8' }, fontFamily: { sans: ['Inter', 'ui-sans-serif', 'system-ui', 'Segoe UI', 'sans-serif'] }, boxShadow: { glow: '0 0 32px rgba(168, 85, 247, 0.34), 0 0 80px rgba(56, 189, 248, 0.18)' } } } };
+    </script>
+    <link rel="stylesheet" href="/assets/css/design-system.css">
+    <link rel="stylesheet" href="/assets/css/component.css">
+    <link rel="stylesheet" href="/assets/css/auth.css">
+    <script defer src="/assets/js/auth.js"></script>
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+      <link rel="stylesheet" href="/assets/css/effects.css">
+    <link rel="stylesheet" href="/assets/css/mobile.css">
+    <script defer src="/assets/js/effects.js"></script>
+    <script defer src="/assets/js/mobile.js"></script>
+  </head>
+  <body class="auth-body min-h-screen text-white antialiased" x-data="devsoraAuth('register')">
+    <main class="auth-shell">
+      <section class="fx-reflect auth-panel">
+        <a class="auth-brand" href="/" aria-label="DEVSORA home">
+          <span class="auth-brand-mark"><img class="brand-logo-img" src="/assets/images/brand/devsora-logo.png" alt="" loading="eager" decoding="async" width="44" height="44"></span>
+          <span>DEVSORA</span>
+        </a>
+
+        <div class="mt-10">
+          <span class="ds-badge ds-badge-primary">Create account</span>
+          <h1 class="mt-5 text-4xl font-semibold leading-none tracking-[-0.055em] sm:text-5xl">Start building AI visuals today.</h1>
+          <p class="mt-4 text-sm leading-7 text-white/55">Launch your AI creative workspace for merged photos, product photoshoots, AI model visuals, and campaign generation.</p>
+        </div>
+
+        <div class="mt-8 grid gap-3 sm:grid-cols-2">
+          <button class="social-btn" type="button" @click="socialLogin('Google')">Google</button>
+          <button class="social-btn" type="button" @click="socialLogin('GitHub')">GitHub</button>
+        </div>
+
+        <div class="auth-divider"><span>or sign up with email</span></div>
+
+        <div class="auth-alert error" x-show="alert.type === 'error'" x-transition x-cloak>
+          <strong x-text="alert.title"></strong>
+          <span x-text="alert.message"></span>
+        </div>
+        <div class="auth-alert success" x-show="alert.type === 'success'" x-transition x-cloak>
+          <strong x-text="alert.title"></strong>
+          <span x-text="alert.message"></span>
+        </div>
+
+        <form class="mt-5 grid gap-5" novalidate @submit.prevent="submit">
+          <label class="auth-field">
+            <span>Full name</span>
+            <input class="auth-input" :class="errors.name ? 'is-invalid' : ''" type="text" autocomplete="name" x-model.trim="form.name" placeholder="Dev Sora">
+            <small x-show="errors.name" x-text="errors.name"></small>
+          </label>
+
+          <label class="auth-field">
+            <span>Email</span>
+            <input class="auth-input" :class="errors.email ? 'is-invalid' : ''" type="email" autocomplete="email" x-model.trim="form.email" placeholder="you@company.com">
+            <small x-show="errors.email" x-text="errors.email"></small>
+          </label>
+
+          <label class="auth-field">
+            <span>Password</span>
+            <div class="auth-password">
+              <input class="auth-input" :class="errors.password ? 'is-invalid' : ''" :type="showPassword ? 'text' : 'password'" autocomplete="new-password" x-model="form.password" placeholder="Minimum 8 characters">
+              <button type="button" @click="showPassword = !showPassword" x-text="showPassword ? 'Hide' : 'Show'"></button>
+            </div>
+            <small x-show="errors.password" x-text="errors.password"></small>
+          </label>
+
+          <label class="flex items-start gap-3 text-sm leading-6 text-white/55">
+            <input class="auth-check mt-1" type="checkbox" x-model="form.terms">
+            <span>I agree to the <a class="font-semibold text-white hover:text-electric" href="/pages/legal/terms.html">Terms</a> and <a class="font-semibold text-white hover:text-electric" href="/pages/legal/privacy.html">Privacy Policy</a>.</span>
+          </label>
+          <small class="-mt-3 text-xs text-rose-300" x-show="errors.terms" x-text="errors.terms"></small>
+
+          <button class="ds-btn ds-btn-primary ds-btn-lg w-full" type="submit" :disabled="loading">
+            <span class="auth-spinner" x-show="loading" x-cloak></span>
+            <span x-text="loading ? 'Creating account...' : 'Create account'"></span>
+          </button>
+        </form>
+
+        <p class="mt-7 text-center text-sm text-white/50">Sudah punya akun? <a class="font-semibold text-white transition hover:text-electric" href="/auth/login.html">Login</a></p>
+      </section>
+
+      <aside class="auth-visual">
+        <div class="auth-orb one"></div>
+        <div class="auth-orb two"></div>
+        <div class="auth-preview-card">
+          <div class="flex items-center justify-between">
+            <p class="text-sm font-semibold">Workspace setup</p>
+            <span class="ds-badge ds-badge-info">AI</span>
+          </div>
+          <div class="mt-6 grid grid-cols-2 gap-3">
+            <div class="auth-mini-card"></div>
+            <div class="auth-mini-card alt"></div>
+          </div>
+          <div class="mt-4 auth-preview-line w-4/5"></div>
+        </div>
+      </aside>
+    </main>
+  </body>
+</html>

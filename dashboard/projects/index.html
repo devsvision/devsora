@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Projects - DEVSORA</title>
+    <meta name="robots" content="noindex, nofollow">
+    <link rel="stylesheet" href="/css/app.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script type="module" src="/js/main.js"></script>
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <link rel="stylesheet" href="/assets/css/effects.css">
+    <link rel="stylesheet" href="/assets/css/mobile.css">
+    <script defer src="/assets/js/effects.js"></script>
+    <script defer src="/assets/js/mobile.js"></script>
+      <link rel="manifest" href="/site.webmanifest">
+      <link rel="icon" href="/assets/icons/favicon.png" type="image/png">
+    <link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png">
+  </head>
+  <body class="bg-slate-50 text-slate-950" x-data="projectsPage()">
+    <div data-include="/components/layout/dashboard-shell.html"></div>
+    <main class="mx-auto max-w-7xl px-5 py-8 sm:px-6 lg:px-8">
+      <h1 class="text-3xl font-semibold">Projects</h1>
+      <div class="mt-6 grid gap-4 md:grid-cols-3">
+        <template x-for="project in projects" :key="project.id">
+          <article class="rounded-lg border border-slate-200 bg-white p-5">
+            <h2 class="font-semibold" x-text="project.name"></h2>
+            <p class="mt-2 text-sm text-slate-500" x-text="project.type"></p>
+          </article>
+        </template>
+      </div>
+    </main>
+  </body>
+</html>

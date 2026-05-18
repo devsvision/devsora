@@ -1,0 +1,232 @@
+:root {
+  --fx-purple: rgba(168, 85, 247, 0.48);
+  --fx-blue: rgba(56, 189, 248, 0.42);
+  --fx-speed: 10s;
+}
+
+.fx-gradient,
+.glow-button,
+.ds-btn-primary,
+.buy-btn {
+  background-size: 220% 220%;
+  animation: fxGradientShift var(--fx-speed) ease-in-out infinite;
+}
+
+.fx-ambient-gradient {
+  position: fixed;
+  inset: 0;
+  z-index: -4;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at var(--fx-x, 18%) var(--fx-y, 12%), rgba(168, 85, 247, 0.16), transparent 24rem),
+    radial-gradient(circle at calc(100% - var(--fx-x, 18%)) 8%, rgba(56, 189, 248, 0.12), transparent 26rem);
+  opacity: 0.9;
+  transition: background 260ms ease;
+}
+
+.fx-particles {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.fx-particle {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.52);
+  box-shadow: 0 0 14px rgba(56, 189, 248, 0.48);
+  opacity: 0;
+  transform: translate3d(0, 16px, 0);
+  animation: fxParticleFloat var(--duration, 12s) linear infinite;
+  animation-delay: var(--delay, 0s);
+}
+
+.fx-reflect,
+.glass-card,
+.ds-card,
+.pricing-card,
+.auth-panel,
+.upload-studio,
+.dashboard-hero,
+.generator-hero {
+  position: relative;
+}
+
+.fx-reflect::after,
+.glass-card::after,
+.ds-card::after,
+.pricing-card::after,
+.auth-panel::after,
+.upload-studio::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: inherit;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.14), transparent 28%, transparent 68%, rgba(255, 255, 255, 0.04));
+  opacity: 0.55;
+  mix-blend-mode: screen;
+}
+
+.fx-border-flow,
+.ds-border-glow,
+.project-card,
+.gallery-card {
+  isolation: isolate;
+}
+
+.fx-border-flow::before,
+.ds-border-glow::before {
+  background: conic-gradient(from var(--fx-angle, 0deg), transparent, var(--fx-purple), var(--fx-blue), transparent 38%);
+  animation: fxBorderSpin 7s linear infinite;
+}
+
+.fx-hover-glow,
+.project-card,
+.gallery-card,
+.ds-card,
+.pricing-card,
+.auth-panel,
+.generator-upload,
+.dashboard-upload {
+  transition:
+    transform 220ms ease,
+    border-color 220ms ease,
+    box-shadow 220ms ease,
+    background 220ms ease,
+    filter 220ms ease;
+}
+
+.fx-hover-glow:hover,
+.project-card:hover,
+.gallery-card:hover,
+.ds-card:hover,
+.pricing-card:hover,
+.auth-panel:hover,
+.generator-upload:hover,
+.dashboard-upload:hover {
+  filter: saturate(1.08);
+}
+
+.fx-reveal {
+  opacity: 0;
+  transform: translate3d(0, 22px, 0);
+  transition: opacity 680ms ease, transform 680ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.fx-reveal.is-visible {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+.fx-skeleton,
+.skeleton-line,
+.skeleton-card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 1rem;
+  background: rgba(255, 255, 255, 0.075);
+}
+
+.fx-skeleton::after,
+.skeleton-line::after,
+.skeleton-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  transform: translateX(-100%);
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.16), transparent);
+  animation: fxSkeleton 1.5s ease-in-out infinite;
+}
+
+.skeleton-line {
+  height: 0.85rem;
+}
+
+.skeleton-card {
+  min-height: 12rem;
+}
+
+.fx-pressable:active,
+.ds-btn:active,
+.category-pill:active,
+.selector-chip:active,
+.favorite-btn:active {
+  transform: scale(0.97);
+}
+
+@property --fx-angle {
+  syntax: '<angle>';
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@keyframes fxGradientShift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+@keyframes fxBorderSpin {
+  to { --fx-angle: 360deg; }
+}
+
+@keyframes fxParticleFloat {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 18px, 0) scale(0.8);
+  }
+  12% {
+    opacity: 0.55;
+  }
+  78% {
+    opacity: 0.4;
+  }
+  100% {
+    opacity: 0;
+    transform: translate3d(var(--drift, 22px), -110vh, 0) scale(1.05);
+  }
+}
+
+@keyframes fxSkeleton {
+  to { transform: translateX(100%); }
+}
+
+@media (max-width: 767px) {
+  :root {
+    --fx-speed: 14s;
+  }
+
+  .fx-particle {
+    width: 2px;
+    height: 2px;
+    animation-duration: calc(var(--duration, 12s) * 1.25);
+  }
+
+  .fx-reveal {
+    transform: translate3d(0, 14px, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fx-gradient,
+  .glow-button,
+  .ds-btn-primary,
+  .buy-btn,
+  .fx-particle,
+  .fx-border-flow::before,
+  .ds-border-glow::before,
+  .fx-skeleton::after,
+  .skeleton-line::after,
+  .skeleton-card::after {
+    animation: none !important;
+  }
+
+  .fx-reveal {
+    opacity: 1;
+    transform: none;
+  }
+}

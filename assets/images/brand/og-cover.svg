@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-labelledby="title desc">
+  <title id="title">DEVSORA AI Creative Visual Platform</title>
+  <desc id="desc">Dark futuristic Open Graph cover for DEVSORA.</desc>
+  <defs>
+    <radialGradient id="purple" cx="24%" cy="18%" r="55%">
+      <stop offset="0" stop-color="#a855f7" stop-opacity=".75"/>
+      <stop offset="1" stop-color="#05050a" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="blue" cx="78%" cy="20%" r="55%">
+      <stop offset="0" stop-color="#38bdf8" stop-opacity=".62"/>
+      <stop offset="1" stop-color="#05050a" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="mark" x1="0" x2="1">
+      <stop offset="0" stop-color="#a855f7"/>
+      <stop offset="1" stop-color="#38bdf8"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="#05050a"/>
+  <rect width="1200" height="630" fill="url(#purple)"/>
+  <rect width="1200" height="630" fill="url(#blue)"/>
+  <g opacity=".16" stroke="#fff">
+    <path d="M0 90h1200M0 180h1200M0 270h1200M0 360h1200M0 450h1200M0 540h1200"/>
+    <path d="M100 0v630M200 0v630M300 0v630M400 0v630M500 0v630M600 0v630M700 0v630M800 0v630M900 0v630M1000 0v630M1100 0v630"/>
+  </g>
+  <rect x="80" y="90" width="1040" height="450" rx="42" fill="#ffffff" opacity=".07" stroke="#ffffff" stroke-opacity=".18"/>
+  <rect x="118" y="130" width="88" height="88" rx="24" fill="#fff" opacity=".11" stroke="#fff" stroke-opacity=".18"/>
+  <rect x="148" y="160" width="28" height="28" rx="6" fill="url(#mark)"/>
+  <text x="118" y="295" fill="#fff" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="86" font-weight="800" letter-spacing="-4">DEVSORA</text>
+  <text x="122" y="362" fill="#bae6fd" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="28" font-weight="700" letter-spacing="4">AI CREATIVE VISUAL PLATFORM</text>
+  <text x="122" y="426" fill="#fff" fill-opacity=".68" font-family="Inter,Segoe UI,Arial,sans-serif" font-size="30">Premium AI visual generation for merge photos, product shoots, and AI models.</text>
+</svg>

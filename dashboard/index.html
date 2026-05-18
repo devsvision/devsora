@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="id" class="scroll-smooth">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Dashboard - DEVSORA AI Platform</title>
+    <meta name="robots" content="noindex, nofollow">
+    
+    <link rel="icon" href="/assets/icons/favicon.png" type="image/png">
+    <link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="preconnect" href="https://cdn.tailwindcss.com">
+    <link rel="preconnect" href="https://unpkg.com">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      window.tailwind = window.tailwind || {};
+      window.tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              carbon: '#05050a',
+              obsidian: '#090912',
+              neon: '#a855f7',
+              electric: '#38bdf8',
+            },
+            fontFamily: {
+              sans: ['Inter', 'ui-sans-serif', 'system-ui', 'Segoe UI', 'sans-serif'],
+            },
+            boxShadow: {
+              glow: '0 0 32px rgba(168, 85, 247, 0.34), 0 0 80px rgba(56, 189, 248, 0.18)',
+            },
+          },
+        },
+      };
+    </script>
+    <link rel="stylesheet" href="/assets/css/design-system.css">
+    <link rel="stylesheet" href="/assets/css/component.css">
+    <link rel="stylesheet" href="/assets/css/dashboard.css">
+    <script defer src="/assets/js/dashboard.js"></script>
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+      <link rel="stylesheet" href="/assets/css/effects.css">
+    <link rel="stylesheet" href="/assets/css/mobile.css">
+    <script defer src="/assets/js/effects.js"></script>
+    <script defer src="/assets/js/mobile.js"></script>
+  </head>
+  <body class="ds-bg-ambient min-h-screen overflow-x-hidden text-white antialiased" x-data="devsoraDashboard()">
+    <div class="dashboard-noise" aria-hidden="true"></div>
+    <div class="mobile-swipe-handle" aria-hidden="true"></div>
+
+    <div class="min-h-screen lg:grid lg:grid-cols-[18rem_1fr]">
+      <aside class="dashboard-sidebar fixed inset-y-0 left-0 z-50 w-72 -translate-x-full transition-transform duration-300 lg:sticky lg:top-0 lg:translate-x-0" :class="sidebarOpen ? 'translate-x-0' : '-translate-x-full'">
+        <div class="flex min-h-screen flex-col p-5">
+          <a class="ds-brand" href="/dashboard/index.html" aria-label="DEVSORA dashboard">
+            <span class="ds-brand-mark"><img class="brand-logo-img" src="/assets/images/brand/devsora-logo.png" alt="" loading="eager" decoding="async" width="40" height="40"></span>
+            <span>DEVSORA</span>
+          </a>
+
+          <nav class="mt-8 grid gap-2" aria-label="Dashboard navigation">
+            <template x-for="item in navItems" :key="item.label">
+              <a class="dashboard-nav-link" :class="item.active ? 'is-active' : ''" :href="item.href">
+                <span class="dashboard-nav-icon" x-text="item.icon"></span>
+                <span x-text="item.label"></span>
+              </a>
+            </template>
+          </nav>
+
+          <div class="mt-auto rounded-3xl border border-white/10 bg-white/[0.055] p-4 backdrop-blur-xl">
+            <div class="flex items-center justify-between">
+              <p class="text-sm font-semibold">Pro Workspace</p>
+              <span class="ds-badge ds-badge-info">Live</span>
+            </div>
+            <div class="mt-4 h-2 overflow-hidden rounded-full bg-white/10">
+              <div class="h-full w-[72%] rounded-full bg-gradient-to-r from-neon to-electric"></div>
+            </div>
+            <p class="mt-3 text-xs leading-5 text-white/45">1,240 credits remaining this cycle.</p>
+          </div>
+        </div>
+      </aside>
+
+      <div class="fixed inset-0 z-40 bg-black/70 backdrop-blur-sm lg:hidden" x-show="sidebarOpen" x-transition.opacity @click="sidebarOpen = false" x-cloak></div>
+
+      <div class="min-w-0">
+        <header class="dashboard-topbar sticky top-0 z-30">
+          <div class="flex min-h-20 items-center justify-between gap-4 px-5 sm:px-6 lg:px-8">
+            <div class="flex items-center gap-3">
+              <button class="grid size-11 place-items-center rounded-2xl border border-white/10 bg-white/[0.07] lg:hidden" type="button" @click="sidebarOpen = true" aria-label="Open sidebar">
+                <span class="space-y-1.5">
+                  <span class="block h-0.5 w-5 rounded-full bg-white"></span>
+                  <span class="block h-0.5 w-5 rounded-full bg-white"></span>
+                  <span class="block h-0.5 w-5 rounded-full bg-white"></span>
+                </span>
+              </button>
+              <div>
+                <p class="ds-eyebrow">Creative Studio</p>
+                <h1 class="mt-1 text-xl font-semibold tracking-[-0.03em] sm:text-2xl">Dashboard</h1>
+              </div>
+            </div>
+
+            <div class="flex items-center gap-3">
+              <div class="hidden rounded-full border border-white/10 bg-white/[0.07] px-4 py-2 text-sm font-semibold text-white/75 backdrop-blur-xl sm:block">
+                <span class="text-electric" x-text="credits.toLocaleString('id-ID')"></span> credits
+              </div>
+              <button class="relative grid size-11 place-items-center rounded-2xl border border-white/10 bg-white/[0.07] transition hover:bg-white/[0.12]" type="button" aria-label="Notifications">
+                <span>◌</span>
+                <span class="absolute right-2.5 top-2.5 size-2 rounded-full bg-electric shadow-[0_0_14px_rgba(56,189,248,.9)]"></span>
+              </button>
+              <button class="flex items-center gap-3 rounded-full border border-white/10 bg-white/[0.07] p-1.5 pr-4 transition hover:bg-white/[0.12]" type="button">
+                <span class="grid size-9 place-items-center rounded-full bg-gradient-to-br from-neon to-electric text-sm font-bold">D</span>
+                <span class="hidden text-sm font-semibold text-white/80 sm:block">Dev Sora</span>
+              </button>
+            </div>
+          </div>
+        </header>
+
+        <main class="px-5 py-6 sm:px-6 lg:px-8 lg:py-8">
+          <section class="fx-reflect dashboard-hero ds-border-glow">
+            <div class="relative z-10 grid gap-8 p-5 sm:p-7 xl:grid-cols-[1fr_auto] xl:items-end">
+              <div>
+                <span class="ds-badge ds-badge-primary">AI platform</span>
+                <h2 class="mt-5 max-w-3xl text-4xl font-semibold leading-[0.98] tracking-[-0.055em] sm:text-5xl">Create premium campaign visuals without leaving your dashboard.</h2>
+                <p class="mt-5 max-w-2xl text-sm leading-7 text-white/55 sm:text-base">Generate merged photo concepts, product photoshoots, and AI model visuals with upload-first AI workflows.</p>
+              </div>
+              <div class="grid grid-cols-3 gap-3 xl:w-[26rem]">
+                <template x-for="metric in heroMetrics" :key="metric.label">
+                  <article class="rounded-3xl border border-white/10 bg-white/[0.055] p-4 text-center backdrop-blur-xl">
+                    <p class="text-2xl font-semibold tracking-[-0.04em]" x-text="metric.value"></p>
+                    <p class="mt-2 text-xs text-white/42" x-text="metric.label"></p>
+                  </article>
+                </template>
+              </div>
+            </div>
+          </section>
+
+          <section class="mt-6 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
+            <template x-for="stat in stats" :key="stat.label">
+              <article class="ds-card ds-card-compact ds-border-glow">
+                <div class="flex items-start justify-between gap-4">
+                  <div>
+                    <p class="text-sm text-white/45" x-text="stat.label"></p>
+                    <p class="mt-3 text-3xl font-semibold tracking-[-0.05em]" x-text="stat.value"></p>
+                  </div>
+                  <span class="rounded-full border border-white/10 bg-white/[0.07] px-3 py-1 text-xs font-semibold" :class="stat.positive ? 'text-emerald-300' : 'text-sky-300'" x-text="stat.delta"></span>
+                </div>
+              </article>
+            </template>
+          </section>
+
+          <section class="mt-6 grid gap-6 xl:grid-cols-[minmax(0,1fr)_25rem]">
+            <div class="grid gap-6">
+              <article class="fx-reflect ds-card">
+                <div class="ds-card-header">
+                  <div>
+                    <h2 class="ds-card-title">Quick Generate</h2>
+                    <p class="ds-card-description">Upload a reference, describe the output, choose a visual style, then generate.</p>
+                  </div>
+                  <span class="ds-badge ds-badge-info">Fast queue</span>
+                </div>
+
+                <form class="grid gap-5" @submit.prevent="generate">
+                  <label class="dashboard-upload group" @dragover.prevent="dragging = true" @dragleave.prevent="dragging = false" @drop.prevent="handleDrop($event)" :class="dragging ? 'is-dragging' : ''">
+                    <input class="ds-sr-only" type="file" accept="image/*" @change="handleFile($event)">
+                    <span class="grid size-14 place-items-center rounded-2xl border border-white/10 bg-white/[0.08] text-2xl shadow-glow transition group-hover:scale-105">+</span>
+                    <span>
+                      <strong class="block text-sm text-white" x-text="fileName || 'Upload image reference'"></strong>
+                      <span class="mt-1 block text-xs leading-5 text-white/42">Drop PNG, JPG, or WEBP for product, portrait, or concept generation.</span>
+                    </span>
+                  </label>
+
+                  <div class="ds-field">
+                    <label class="ds-label" for="prompt">Prompt</label>
+                    <textarea id="prompt" class="ds-textarea" x-model="prompt" placeholder="Cinematic skincare product photo, reflective black surface, neon purple rim light, premium editorial composition"></textarea>
+                  </div>
+
+                  <div class="grid gap-4 md:grid-cols-[1fr_auto]">
+                    <div class="ds-field">
+                      <label class="ds-label" for="style">AI style</label>
+                      <select id="style" class="ds-select" x-model="selectedStyle">
+                        <template x-for="style in styles" :key="style">
+                          <option class="bg-slate-950" :value="style" x-text="style"></option>
+                        </template>
+                      </select>
+                    </div>
+                    <button class="ds-btn ds-btn-primary self-end" type="submit" x-text="generating ? 'Generating...' : 'Generate AI'"></button>
+                  </div>
+                </form>
+              </article>
+
+              <article class="ds-card">
+                <div class="ds-card-header">
+                  <div>
+                    <h2 class="ds-card-title">Recent Projects</h2>
+                    <p class="ds-card-description">Latest creative workspaces across product, headshot, and wedding campaigns.</p>
+                  </div>
+                  <a class="ds-btn ds-btn-secondary ds-btn-sm" href="/dashboard/projects/index.html">View all</a>
+                </div>
+                <div class="grid gap-3 md:grid-cols-3">
+                  <template x-for="project in projects" :key="project.name">
+                    <article class="project-card">
+                      <div class="project-thumb" :class="project.art"></div>
+                      <h3 class="mt-4 text-sm font-semibold" x-text="project.name"></h3>
+                      <p class="mt-1 text-xs text-white/42" x-text="project.type"></p>
+                    </article>
+                  </template>
+                </div>
+              </article>
+            </div>
+
+            <aside class="grid gap-6">
+              <article class="fx-reflect ds-card result-card">
+                <div class="ds-card-header">
+                  <div>
+                    <h2 class="ds-card-title">Result Preview</h2>
+                    <p class="ds-card-description">Before and after generation preview.</p>
+                  </div>
+                </div>
+                <div class="before-after-slider" :style="`--split:${slider}%`">
+                  <div class="before-layer"></div>
+                  <div class="after-layer"></div>
+                  <div class="slider-line"></div>
+                  <input class="slider-input" type="range" min="8" max="92" x-model="slider" aria-label="Before after comparison">
+                  <span class="compare-pill left-4">Before</span>
+                  <span class="compare-pill right-4">After</span>
+                </div>
+                <div class="mt-5 grid grid-cols-2 gap-3">
+                  <button class="ds-btn ds-btn-primary" type="button">Download</button>
+                  <button class="ds-btn ds-btn-secondary" type="button">Share</button>
+                </div>
+              </article>
+
+              <article class="ds-card">
+                <div class="ds-card-header">
+                  <div>
+                    <h2 class="ds-card-title">AI History</h2>
+                    <p class="ds-card-description">Recent generations and export status.</p>
+                  </div>
+                </div>
+                <div class="grid gap-3">
+                  <template x-for="item in history" :key="item.name">
+                    <article class="history-row">
+                      <span class="history-dot" :class="item.dot"></span>
+                      <div class="min-w-0">
+                        <p class="truncate text-sm font-semibold" x-text="item.name"></p>
+                        <p class="mt-1 text-xs text-white/42" x-text="item.meta"></p>
+                      </div>
+                      <span class="ds-badge" x-text="item.status"></span>
+                    </article>
+                  </template>
+                </div>
+              </article>
+            </aside>
+          </section>
+        </main>
+      </div>
+    </div>
+
+    <nav class="mobile-bottom-nav lg:hidden" aria-label="Mobile dashboard navigation">
+      <a class="is-active" href="/dashboard/index.html"><span>D</span><span>Home</span></a>
+      <a href="/dashboard/generate-ai.html"><span>G</span><span>Generate</span></a>
+      <a href="/dashboard/projects/index.html"><span>P</span><span>Projects</span></a>
+      <button type="button" @click="sidebarOpen = true"><span>M</span><span>Menu</span></button>
+    </nav>
+  </body>
+</html>

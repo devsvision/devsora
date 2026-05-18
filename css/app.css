@@ -1,0 +1,30 @@
+:root {
+  color-scheme: light;
+  --color-ink: #020617;
+  --color-muted: #475569;
+  --color-line: #e2e8f0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-width: 320px;
+}
+
+[x-cloak] {
+  display: none !important;
+}
+
+:focus-visible {
+  outline: 3px solid #67e8f9;
+  outline-offset: 3px;
+}
+
+.brand-logo-img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}

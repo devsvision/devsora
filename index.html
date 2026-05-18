@@ -1,0 +1,323 @@
+<!doctype html>
+<html lang="id" class="scroll-smooth">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>DEVSORA - Platform Visual Kreatif AI Premium</title>
+    <meta name="description" content="DEVSORA adalah platform AI SaaS premium untuk Gabung Foto, Photoshoot Produk, dan Foto Model AI.">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#05050a">
+    <meta name="application-name" content="DEVSORA">
+    <meta name="apple-mobile-web-app-title" content="DEVSORA">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta property="og:title" content="DEVSORA - Premium AI Creative Visual Platform">
+    <meta property="og:description" content="Buat visual AI premium untuk brand, kreator, dan bisnis dalam satu studio kreatif.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://devsora.com/">
+    <meta property="og:site_name" content="DEVSORA">
+    <meta property="og:image" content="https://devsora.com/assets/images/brand/og-cover.svg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="DEVSORA - Premium AI Creative Visual Platform">
+    <meta name="twitter:description" content="Buat visual AI premium untuk brand, kreator, dan bisnis dalam satu studio kreatif.">
+    <meta name="twitter:image" content="https://devsora.com/assets/images/brand/og-cover.svg">
+    
+    <link rel="icon" href="/assets/icons/favicon.png" type="image/png">
+    <link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="preconnect" href="https://cdn.tailwindcss.com">
+    <link rel="preconnect" href="https://unpkg.com">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "DEVSORA",
+        "applicationCategory": "DesignApplication",
+        "operatingSystem": "Web",
+        "description": "Premium AI creative visual platform for Merge Photos, Product Photoshoot, and AI Model Photo.",
+        "url": "https://devsora.com/"
+      }
+    </script>
+    <script>
+      window.tailwind = window.tailwind || {};
+      window.tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              carbon: '#05050a',
+              obsidian: '#090912',
+              neon: '#a855f7',
+              electric: '#38bdf8',
+            },
+            fontFamily: {
+              sans: ['Inter', 'ui-sans-serif', 'system-ui', 'Segoe UI', 'sans-serif'],
+            },
+            boxShadow: {
+              glow: '0 0 32px rgba(168, 85, 247, 0.34), 0 0 80px rgba(56, 189, 248, 0.18)',
+            },
+          },
+        },
+      };
+    </script>
+    <link rel="stylesheet" href="/assets/css/design-system.css">
+    <link rel="stylesheet" href="/assets/css/component.css">
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <script defer src="/assets/js/app.js"></script>
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+      <link rel="stylesheet" href="/assets/css/effects.css">
+    <link rel="stylesheet" href="/assets/css/mobile.css">
+    <script defer src="/assets/js/effects.js"></script>
+    <script defer src="/assets/js/mobile.js"></script>
+  </head>
+  <body class="min-h-screen overflow-x-hidden bg-carbon font-sans text-white antialiased" x-data="devsoraLanding()">
+    <div class="site-ambient" aria-hidden="true"></div>
+    <div class="noise-layer" aria-hidden="true"></div>
+
+    <header class="fixed inset-x-0 top-0 z-50 transition-all duration-300" :class="scrolled ? 'nav-solid' : 'nav-floating'">
+      <nav class="mx-auto flex min-h-20 max-w-7xl items-center justify-between px-5 sm:px-6 lg:px-8" aria-label="Primary navigation">
+        <a href="#home" class="group flex items-center gap-3" aria-label="DEVSORA home">
+          <span class="grid size-10 place-items-center rounded-xl border border-white/15 bg-white/10 shadow-glow backdrop-blur-xl">
+            <img class="brand-logo-img" src="/assets/images/brand/devsora-logo.png" alt="" loading="eager" decoding="async" width="40" height="40">
+          </span>
+          <span class="text-lg font-semibold tracking-[0.18em] text-white">DEVSORA</span>
+        </a>
+
+        <div class="hidden items-center gap-8 rounded-full border border-white/10 bg-white/[0.06] px-6 py-3 text-sm font-medium text-white/72 backdrop-blur-xl lg:flex">
+          <a class="nav-link" href="#home" x-text="copy.nav.home">Beranda</a>
+          <a class="nav-link" href="#tools" x-text="copy.nav.tools">Alat AI</a>
+          <a class="nav-link" href="#pricing" x-text="copy.nav.pricing">Harga</a>
+        </div>
+
+        <div class="hidden items-center gap-3 lg:flex">
+          <div class="language-dropdown" @click.outside="langOpen = false">
+            <button class="language-trigger" type="button" @click="langOpen = !langOpen" :aria-expanded="langOpen.toString()" aria-label="Language selector">
+              <span class="flag-icon" :class="language === 'id' ? 'flag-id' : 'flag-us'"></span>
+              <b x-text="language === 'id' ? 'ID' : 'EN'">ID</b>
+            </button>
+            <div class="language-menu" x-show="langOpen" x-transition x-cloak>
+              <button type="button" @click="setLanguage('id')"><span class="flag-icon flag-id"></span><b>ID</b></button>
+              <button type="button" @click="setLanguage('en')"><span class="flag-icon flag-us"></span><b>EN</b></button>
+            </div>
+          </div>
+          <a class="rounded-full px-5 py-3 text-sm font-semibold text-white/75 transition hover:text-white" href="/auth/login.html" x-text="copy.nav.login">Masuk</a>
+          <a class="glow-button rounded-full px-5 py-3 text-sm font-semibold text-white" href="/auth/register.html" x-text="copy.nav.cta">Mulai Membuat</a>
+        </div>
+
+        <button class="grid size-11 place-items-center rounded-full border border-white/10 bg-white/10 backdrop-blur-xl lg:hidden" type="button" @click="mobileOpen = !mobileOpen" :aria-expanded="mobileOpen.toString()" aria-label="Toggle menu">
+          <span class="relative h-4 w-5">
+            <span class="absolute left-0 top-0 h-0.5 w-5 rounded-full bg-white transition" :class="mobileOpen ? 'translate-y-2 rotate-45' : ''"></span>
+            <span class="absolute left-0 top-2 h-0.5 w-5 rounded-full bg-white transition" :class="mobileOpen ? 'opacity-0' : ''"></span>
+            <span class="absolute left-0 top-4 h-0.5 w-5 rounded-full bg-white transition" :class="mobileOpen ? '-translate-y-2 -rotate-45' : ''"></span>
+          </span>
+        </button>
+      </nav>
+
+      <div class="mobile-menu-panel mx-5 rounded-3xl border border-white/10 bg-black/80 p-3 backdrop-blur-2xl lg:hidden" x-show="mobileOpen" x-transition x-cloak>
+        <div class="language-dropdown mb-2" @click.outside="langOpen = false">
+          <button class="language-trigger" type="button" @click="langOpen = !langOpen" :aria-expanded="langOpen.toString()" aria-label="Language selector">
+            <span class="flag-icon" :class="language === 'id' ? 'flag-id' : 'flag-us'"></span>
+            <b x-text="language === 'id' ? 'ID' : 'EN'">ID</b>
+          </button>
+          <div class="language-menu" x-show="langOpen" x-transition x-cloak>
+            <button type="button" @click="setLanguage('id')"><span class="flag-icon flag-id"></span><b>ID</b></button>
+            <button type="button" @click="setLanguage('en')"><span class="flag-icon flag-us"></span><b>EN</b></button>
+          </div>
+        </div>
+        <a class="mobile-link" href="#home" @click="mobileOpen = false" x-text="copy.nav.home">Beranda</a>
+        <a class="mobile-link" href="#tools" @click="mobileOpen = false" x-text="copy.nav.tools">Alat AI</a>
+        <a class="mobile-link" href="#pricing" @click="mobileOpen = false" x-text="copy.nav.pricing">Harga</a>
+        <a class="mobile-link" href="/auth/login.html" x-text="copy.nav.login">Masuk</a>
+        <a class="mt-2 block rounded-2xl bg-gradient-to-r from-neon to-electric px-4 py-3 text-center text-sm font-semibold" href="/auth/register.html" x-text="copy.nav.cta">Mulai Membuat</a>
+      </div>
+    </header>
+
+    <main>
+      <section id="home" class="fx-gradient relative overflow-hidden pt-32 sm:pt-36">
+        <div class="hero-grid" aria-hidden="true"></div>
+        <div class="mx-auto grid min-h-[calc(100svh-5rem)] max-w-7xl content-center gap-12 px-5 pb-20 sm:px-6 lg:grid-cols-[1.03fr_.97fr] lg:px-8">
+          <div class="relative z-10 max-w-4xl">
+            <div class="glass-pill inline-flex items-center gap-2 rounded-full px-4 py-2 text-xs font-semibold uppercase tracking-[0.22em] text-white/76">
+              <span class="size-2 rounded-full bg-electric shadow-[0_0_18px_rgba(56,189,248,.9)]"></span>
+              <span x-text="copy.hero.eyebrow">Platform Visual Kreatif AI</span>
+            </div>
+            <h1 class="mt-7 max-w-4xl text-5xl font-semibold leading-[0.95] tracking-[-0.04em] text-white sm:text-6xl lg:text-7xl">
+              <span x-text="copy.hero.title">Buat visual AI premium untuk brand yang bergerak cepat.</span>
+            </h1>
+            <p class="mt-7 max-w-2xl text-base leading-8 text-white/64 sm:text-lg" x-text="copy.hero.description"></p>
+            <div class="mt-9 flex flex-col gap-4 sm:flex-row">
+              <a class="glow-button inline-flex min-h-14 items-center justify-center rounded-full px-7 text-sm font-semibold text-white" href="/auth/register.html" x-text="copy.hero.primary">Buat gambar pertama</a>
+              <a class="inline-flex min-h-14 items-center justify-center rounded-full border border-white/12 bg-white/[0.06] px-7 text-sm font-semibold text-white/86 backdrop-blur-xl transition hover:border-white/24 hover:bg-white/[0.1]" href="#tools" x-text="copy.hero.secondary">Lihat alat AI</a>
+            </div>
+            <div class="mt-10 grid max-w-2xl grid-cols-3 gap-4">
+              <div class="metric-card"><strong>2.8M</strong><span x-text="copy.metrics[0]">gambar dibuat</span></div>
+              <div class="metric-card"><strong>98%</strong><span x-text="copy.metrics[1]">operasional kreatif lebih cepat</span></div>
+              <div class="metric-card"><strong>4K</strong><span x-text="copy.metrics[2]">siap ekspor</span></div>
+            </div>
+          </div>
+
+          <div class="relative z-10 lg:pl-4">
+            <div class="orb orb-one" aria-hidden="true"></div>
+            <div class="orb orb-two" aria-hidden="true"></div>
+            <div class="fx-reflect upload-studio tilt-card">
+              <div class="flex items-center justify-between border-b border-white/10 p-4">
+                <div>
+                  <p class="text-sm font-semibold text-white" x-text="copy.studio.title">Neural Studio</p>
+                  <p class="mt-1 text-xs text-white/45" x-text="copy.studio.subtitle">Photoshoot Produk / Pencahayaan Editorial</p>
+                </div>
+                <div class="flex gap-1.5">
+                  <span class="size-2.5 rounded-full bg-fuchsia-400"></span>
+                  <span class="size-2.5 rounded-full bg-sky-400"></span>
+                  <span class="size-2.5 rounded-full bg-white/35"></span>
+                </div>
+              </div>
+
+              <div class="p-4 sm:p-5">
+                <label class="upload-box group grid min-h-64 cursor-pointer place-items-center rounded-3xl p-6 text-center" @dragover.prevent="dragging = true" @dragleave.prevent="dragging = false" @drop.prevent="handleDrop($event)" :class="dragging ? 'is-dragging' : ''">
+                  <input class="sr-only" type="file" accept="image/*" @change="handleFile($event)">
+                  <span class="grid size-16 place-items-center rounded-2xl border border-white/12 bg-white/10 text-2xl shadow-glow transition group-hover:scale-105">+</span>
+                  <span class="mt-5 block text-lg font-semibold" x-text="fileName || copy.studio.upload"></span>
+                  <span class="mt-2 block max-w-sm text-sm leading-6 text-white/48" x-text="copy.studio.uploadHelp"></span>
+                </label>
+
+                <div class="mt-4 grid gap-3 sm:grid-cols-[1fr_auto]">
+                  <input class="prompt-input" type="text" x-model="prompt" :placeholder="copy.studio.prompt">
+                  <button class="glow-button min-h-12 rounded-2xl px-6 text-sm font-semibold" type="button" @click="generate" x-text="generating ? copy.studio.generating : copy.studio.generate"></button>
+                </div>
+
+                <div class="mt-5 grid grid-cols-3 gap-3">
+                  <template x-for="preset in presets" :key="preset">
+                    <button class="preset-chip" type="button" @click="prompt = preset" x-text="preset"></button>
+                  </template>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="tools" class="section-wrap">
+        <div class="section-heading">
+          <p x-text="copy.sections.toolsEyebrow">Alat AI</p>
+          <h2 x-text="copy.sections.toolsTitle">Satu studio untuk semua alur visual.</h2>
+        </div>
+        <div class="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <template x-for="tool in tools" :key="tool.title">
+            <article class="glass-card glow-border group p-6">
+              <div class="flex items-center justify-between">
+                <span class="grid size-12 place-items-center rounded-2xl bg-white/[0.08] text-xl" x-text="tool.icon"></span>
+                <span class="rounded-full border border-white/10 px-3 py-1 text-xs text-white/45">AI</span>
+              </div>
+              <h3 class="mt-7 text-xl font-semibold" x-text="tool.title"></h3>
+              <p class="mt-3 text-sm leading-7 text-white/55" x-text="tool.text"></p>
+            </article>
+          </template>
+        </div>
+      </section>
+
+      <section id="showcase" class="section-wrap">
+        <div class="section-heading">
+          <p x-text="copy.sections.galleryEyebrow">Galeri Showcase</p>
+          <h2 x-text="copy.sections.galleryTitle">Output kelas kampanye dengan kecepatan studio.</h2>
+        </div>
+        <div class="masonry mt-12">
+          <template x-for="item in gallery" :key="item.title">
+            <article class="gallery-card tilt-card" :class="item.size">
+              <div class="gallery-art" :class="item.gradient"></div>
+              <div class="absolute inset-x-0 bottom-0 p-5">
+                <p class="text-sm font-semibold" x-text="item.title"></p>
+                <p class="mt-1 text-xs text-white/50" x-text="item.caption"></p>
+              </div>
+            </article>
+          </template>
+          <article class="before-after glass-card p-4">
+            <div class="grid min-h-64 grid-cols-2 overflow-hidden rounded-3xl border border-white/10">
+              <div class="relative bg-[radial-gradient(circle_at_20%_10%,rgba(148,163,184,.42),transparent_35%),linear-gradient(135deg,#111827,#020617)]">
+                <span class="compare-label" x-text="copy.compare.before">Sebelum</span>
+              </div>
+              <div class="relative bg-[radial-gradient(circle_at_70%_20%,rgba(56,189,248,.5),transparent_32%),radial-gradient(circle_at_30%_70%,rgba(168,85,247,.5),transparent_35%),linear-gradient(135deg,#05050a,#111827)]">
+                <span class="compare-label" x-text="copy.compare.after">Sesudah</span>
+              </div>
+            </div>
+            <h3 class="mt-5 text-lg font-semibold" x-text="copy.compare.title">Transformasi studio otomatis</h3>
+            <p class="mt-2 text-sm leading-6 text-white/50" x-text="copy.compare.text">Buat pilihan visual yang rapi dengan pencahayaan konsisten, komposisi matang, dan finishing siap brand.</p>
+          </article>
+        </div>
+      </section>
+
+      <section id="pricing" class="section-wrap">
+        <div class="section-heading">
+          <p x-text="copy.sections.pricingEyebrow">Harga</p>
+          <h2 x-text="copy.sections.pricingTitle">Mulai gratis. Tingkatkan saat kebutuhan visual bertumbuh.</h2>
+        </div>
+        <div class="mt-12 grid gap-5 lg:grid-cols-3">
+          <template x-for="plan in plans" :key="plan.name">
+          <article class="fx-reflect pricing-card glow-border" :class="plan.featured ? 'featured-plan' : ''">
+              <p class="text-sm font-semibold text-white/62" x-text="plan.name"></p>
+              <div class="mt-5 flex items-end gap-2">
+                <span class="text-4xl font-semibold tracking-[-0.04em]" x-text="plan.price"></span>
+                <span class="pb-1 text-sm text-white/45" x-text="plan.period"></span>
+              </div>
+              <p class="mt-4 min-h-12 text-sm leading-6 text-white/52" x-text="plan.text"></p>
+              <a class="mt-7 inline-flex min-h-12 w-full items-center justify-center rounded-2xl text-sm font-semibold transition" :class="plan.featured ? 'glow-button' : 'border border-white/12 bg-white/[0.06] text-white hover:bg-white/[0.1]'" href="/auth/register.html" x-text="plan.cta"></a>
+              <ul class="mt-7 grid gap-3 text-sm text-white/62">
+                <template x-for="feature in plan.features" :key="feature">
+                  <li class="flex gap-3"><span class="text-electric">✦</span><span x-text="feature"></span></li>
+                </template>
+              </ul>
+            </article>
+          </template>
+        </div>
+      </section>
+
+      <section id="faq" class="section-wrap">
+        <div class="section-heading">
+          <p x-text="copy.sections.faqEyebrow">FAQ</p>
+          <h2 x-text="copy.sections.faqTitle">Pertanyaan sebelum mulai?</h2>
+        </div>
+        <div class="mx-auto mt-12 max-w-3xl space-y-3">
+          <template x-for="(item, index) in faqs" :key="item.q">
+            <article class="faq-item">
+              <button class="flex w-full items-center justify-between gap-5 px-5 py-5 text-left" type="button" @click="openFaq = openFaq === index ? null : index">
+                <span class="font-semibold" x-text="item.q"></span>
+                <span class="grid size-8 shrink-0 place-items-center rounded-full bg-white/[0.08] text-white/70" x-text="openFaq === index ? '-' : '+'"></span>
+              </button>
+              <div class="px-5 pb-5 text-sm leading-7 text-white/55" x-show="openFaq === index">
+                <p x-text="item.a"></p>
+              </div>
+            </article>
+          </template>
+        </div>
+      </section>
+    </main>
+
+    <footer class="relative border-t border-white/10 px-5 py-12 sm:px-6 lg:px-8">
+      <div class="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[1fr_auto]">
+        <div>
+          <div class="flex items-center gap-3">
+            <span class="grid size-10 place-items-center rounded-xl border border-white/15 bg-white/10"><img class="brand-logo-img" src="/assets/images/brand/devsora-logo.png" alt="" loading="eager" decoding="async" width="40" height="40"></span>
+            <span class="text-lg font-semibold tracking-[0.18em]">DEVSORA</span>
+          </div>
+          <p class="mt-5 max-w-md text-sm leading-7 text-white/50" x-text="copy.footer.description">Platform visual kreatif AI premium untuk tim produk, seller, agensi, dan kreator.</p>
+        </div>
+        <div class="grid grid-cols-2 gap-10 text-sm sm:grid-cols-3">
+          <div class="grid gap-3 text-white/50"><strong class="text-white" x-text="copy.footer.platform">Platform</strong><a href="#tools" x-text="copy.footer.tools">Alat AI</a><a href="#showcase" x-text="copy.footer.showcase">Showcase</a><a href="#pricing" x-text="copy.footer.pricing">Harga</a></div>
+          <div class="grid gap-3 text-white/50"><strong class="text-white" x-text="copy.footer.account">Akun</strong><a href="/auth/login.html" x-text="copy.footer.login">Masuk</a><a href="/auth/register.html" x-text="copy.footer.register">Daftar</a><a href="/dashboard/index.html" x-text="copy.footer.dashboard">Dashboard</a></div>
+          <div class="grid gap-3 text-white/50"><strong class="text-white" x-text="copy.footer.legal">Legal</strong><a href="/pages/legal/privacy.html" x-text="copy.footer.privacy">Privasi</a><a href="/pages/legal/terms.html" x-text="copy.footer.terms">Ketentuan</a></div>
+        </div>
+      </div>
+      <div class="mx-auto mt-10 grid max-w-7xl gap-3 border-t border-white/10 pt-6 text-xs text-white/38 sm:grid-cols-3 sm:items-center">
+        <p class="text-left" x-text="copy.footer.rights">© 2026 DEVSORA. Seluruh hak cipta dilindungi.</p>
+        <p class="text-left text-white/50 sm:text-center" x-text="copy.footer.managed">Managed by DEVS STUDIO</p>
+        <p class="text-left sm:text-right" x-text="copy.footer.company">PT. Dewata Eksha Visual Sinergy</p>
+      </div>
+    </footer>
+
+    <nav class="mobile-bottom-nav lg:hidden" aria-label="Mobile quick navigation">
+      <a class="is-active" href="#home"><span>H</span><span x-text="copy.mobile.home">Beranda</span></a>
+      <a href="#tools"><span>A</span><span x-text="copy.mobile.tools">Alat AI</span></a>
+      <a href="#showcase"><span>S</span><span x-text="copy.mobile.showcase">Showcase</span></a>
+      <a href="/auth/login.html"><span>L</span><span x-text="copy.mobile.login">Masuk</span></a>
+    </nav>
+  </body>
+</html>

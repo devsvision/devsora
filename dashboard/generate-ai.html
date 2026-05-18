@@ -1,0 +1,372 @@
+<!doctype html>
+<html lang="id" class="scroll-smooth">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Generate AI Image - DEVSORA</title>
+    <meta name="robots" content="noindex, nofollow">
+    
+    <link rel="icon" href="/assets/icons/favicon.png" type="image/png">
+    <link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="preconnect" href="https://cdn.tailwindcss.com">
+    <link rel="preconnect" href="https://unpkg.com">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      window.tailwind = window.tailwind || {};
+      window.tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              carbon: '#05050a',
+              obsidian: '#090912',
+              neon: '#a855f7',
+              electric: '#38bdf8',
+            },
+            fontFamily: {
+              sans: ['Inter', 'ui-sans-serif', 'system-ui', 'Segoe UI', 'sans-serif'],
+            },
+            boxShadow: {
+              glow: '0 0 32px rgba(168, 85, 247, 0.34), 0 0 80px rgba(56, 189, 248, 0.18)',
+            },
+          },
+        },
+      };
+    </script>
+    <link rel="stylesheet" href="/assets/css/design-system.css">
+    <link rel="stylesheet" href="/assets/css/component.css">
+    <link rel="stylesheet" href="/assets/css/dashboard.css">
+    <link rel="stylesheet" href="/assets/css/generator.css">
+    <script defer src="/assets/js/generator.js"></script>
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+      <link rel="stylesheet" href="/assets/css/effects.css">
+    <link rel="stylesheet" href="/assets/css/mobile.css">
+    <script defer src="/assets/js/effects.js"></script>
+    <script defer src="/assets/js/mobile.js"></script>
+  </head>
+  <body class="ds-bg-ambient min-h-screen overflow-x-hidden text-white antialiased" x-data="devsoraGenerator()">
+    <div class="dashboard-noise" aria-hidden="true"></div>
+    <div class="mobile-swipe-handle" aria-hidden="true"></div>
+
+    <div class="min-h-screen lg:grid lg:grid-cols-[18rem_1fr]">
+      <aside class="dashboard-sidebar fixed inset-y-0 left-0 z-50 w-72 -translate-x-full transition-transform duration-300 lg:sticky lg:top-0 lg:translate-x-0" :class="sidebarOpen ? 'translate-x-0' : '-translate-x-full'">
+        <div class="flex min-h-screen flex-col p-5">
+          <a class="ds-brand" href="/dashboard/index.html" aria-label="DEVSORA dashboard">
+            <span class="ds-brand-mark"><img class="brand-logo-img" src="/assets/images/brand/devsora-logo.png" alt="" loading="eager" decoding="async" width="40" height="40"></span>
+            <span>DEVSORA</span>
+          </a>
+
+          <nav class="mt-8 grid gap-2" aria-label="Dashboard navigation">
+            <template x-for="item in navItems" :key="item.label">
+              <a class="dashboard-nav-link" :class="item.active ? 'is-active' : ''" :href="item.href">
+                <span class="dashboard-nav-icon" x-text="item.icon"></span>
+                <span x-text="item.label"></span>
+              </a>
+            </template>
+          </nav>
+
+          <div class="mt-auto rounded-3xl border border-white/10 bg-white/[0.055] p-4 backdrop-blur-xl">
+            <div class="flex items-center justify-between">
+              <p class="text-sm font-semibold">Generation Credits</p>
+              <span class="ds-badge ds-badge-info">Pro</span>
+            </div>
+            <div class="mt-4 h-2 overflow-hidden rounded-full bg-white/10">
+              <div class="h-full w-[72%] rounded-full bg-gradient-to-r from-neon to-electric"></div>
+            </div>
+            <p class="mt-3 text-xs leading-5 text-white/45"><span x-text="credits.toLocaleString('id-ID')"></span> credits remaining.</p>
+          </div>
+        </div>
+      </aside>
+
+      <div class="fixed inset-0 z-40 bg-black/70 backdrop-blur-sm lg:hidden" x-show="sidebarOpen" x-transition.opacity @click="sidebarOpen = false" x-cloak></div>
+
+      <div class="min-w-0">
+        <header class="dashboard-topbar sticky top-0 z-30">
+          <div class="flex min-h-20 items-center justify-between gap-4 px-5 sm:px-6 lg:px-8">
+            <div class="flex items-center gap-3">
+              <button class="grid size-11 place-items-center rounded-2xl border border-white/10 bg-white/[0.07] lg:hidden" type="button" @click="sidebarOpen = true" aria-label="Open sidebar">
+                <span class="space-y-1.5">
+                  <span class="block h-0.5 w-5 rounded-full bg-white"></span>
+                  <span class="block h-0.5 w-5 rounded-full bg-white"></span>
+                  <span class="block h-0.5 w-5 rounded-full bg-white"></span>
+                </span>
+              </button>
+              <div>
+                <p class="ds-eyebrow">AI Image Generator</p>
+                <h1 class="mt-1 text-xl font-semibold tracking-[-0.03em] sm:text-2xl">Generate AI</h1>
+              </div>
+            </div>
+
+            <div class="flex items-center gap-3">
+              <div class="hidden rounded-full border border-white/10 bg-white/[0.07] px-4 py-2 text-sm font-semibold text-white/75 backdrop-blur-xl sm:block">
+                <span class="text-electric" x-text="credits.toLocaleString('id-ID')"></span> credits
+              </div>
+              <button class="relative grid size-11 place-items-center rounded-2xl border border-white/10 bg-white/[0.07] transition hover:bg-white/[0.12]" type="button" aria-label="Notifications">
+                <span class="text-sm font-bold">N</span>
+                <span class="absolute right-2.5 top-2.5 size-2 rounded-full bg-electric shadow-[0_0_14px_rgba(56,189,248,.9)]"></span>
+              </button>
+              <span class="grid size-11 place-items-center rounded-full bg-gradient-to-br from-neon to-electric text-sm font-bold">D</span>
+            </div>
+          </div>
+        </header>
+
+        <main class="px-5 py-6 sm:px-6 lg:px-8 lg:py-8">
+          <section class="fx-reflect generator-hero ds-border-glow">
+            <div class="relative z-10 p-5 sm:p-7 lg:p-8">
+              <span class="ds-badge ds-badge-primary">All-in-one generator</span>
+              <h2 class="mt-5 max-w-4xl text-4xl font-semibold leading-[0.98] tracking-[-0.055em] sm:text-5xl">Choose a category, upload references, and generate premium AI visuals.</h2>
+              <p class="mt-5 max-w-2xl text-sm leading-7 text-white/55 sm:text-base">Use one page for Merge Photos, Product Photoshoot, and AI Model Photo without adding more sidebar menus.</p>
+            </div>
+          </section>
+
+          <div class="mt-6 grid gap-6 xl:grid-cols-[minmax(0,0.92fr)_minmax(34rem,1.08fr)]">
+            <section class="grid gap-6">
+              <article class="fx-reflect ds-card">
+                <div class="ds-card-header">
+                  <div>
+                    <h2 class="ds-card-title">Input Controls</h2>
+                    <p class="ds-card-description" x-text="selectedCategoryHint"></p>
+                  </div>
+                  <span class="ds-badge ds-badge-info" x-text="selectedCategory"></span>
+                </div>
+
+                <form class="grid gap-5" @submit.prevent="generate">
+                  <div class="ds-field">
+                    <label class="ds-label">Category</label>
+                    <div class="feature-category-grid">
+                      <template x-for="category in categories" :key="category.value">
+                        <button class="feature-category-card" :class="selectedCategory === category.value ? 'is-active' : ''" type="button" @click="setCategory(category.value)">
+                          <span x-text="category.label"></span>
+                          <small x-text="category.hint"></small>
+                        </button>
+                      </template>
+                    </div>
+                  </div>
+
+                  <div x-show="isMergeMode" x-transition>
+                    <div class="mb-3 flex items-center justify-between gap-3">
+                      <label class="ds-label">Upload images <span class="text-white/40">(min 2, max 5)</span></label>
+                      <span class="text-xs font-semibold" :class="mergeImages.length >= 2 ? 'text-emerald-300' : 'text-rose-300'" x-text="`${mergeImages.length}/5 selected`"></span>
+                    </div>
+                    <div class="merge-upload-grid">
+                      <template x-for="(image, index) in mergeImages" :key="image.id">
+                        <div class="merge-thumb">
+                          <img :src="image.url" :alt="`Source image ${index + 1}`">
+                          <button class="merge-remove" type="button" @click="removeMergeImage(image.id)" aria-label="Remove image">x</button>
+                        </div>
+                      </template>
+                      <label class="merge-add" :class="dragging ? 'is-dragging' : ''" x-show="mergeImages.length < 5" @dragover.prevent="dragging = true" @dragleave.prevent="dragging = false" @drop.prevent="handleDrop($event)">
+                        <input class="ds-sr-only" type="file" accept="image/*" multiple @change="handleMergeFiles($event)">
+                        <span>+</span>
+                      </label>
+                    </div>
+                  </div>
+
+                  <div class="photoshoot-panel" x-show="isPhotoshootMode" x-transition>
+                    <div class="ds-field">
+                      <label class="ds-label">Photoshoot style</label>
+                      <div class="selector-grid photoshoot-style-grid">
+                        <template x-for="style in photoshootStyles" :key="style">
+                          <button class="selector-chip" :class="photoshootStyle === style ? 'is-active' : ''" type="button" @click="photoshootStyle = style; resultReady = false; generatedResults = []" x-text="style"></button>
+                        </template>
+                      </div>
+                    </div>
+
+                    <div class="photoshoot-upload-pair">
+                      <label class="photoshoot-upload-card" :class="dragging ? 'is-dragging' : ''" @dragover.prevent="dragging = true" @dragleave.prevent="dragging = false" @drop.prevent="handleDrop($event)">
+                        <input class="ds-sr-only" type="file" accept="image/*" @change="handleFile($event)">
+                        <template x-if="previewUrl">
+                          <img class="upload-preview" :src="previewUrl" alt="Product photo preview">
+                        </template>
+                        <template x-if="!previewUrl">
+                          <div class="grid place-items-center text-center">
+                            <span class="grid size-12 place-items-center rounded-2xl border border-white/10 bg-white/[0.08] text-2xl">+</span>
+                            <strong class="mt-4 block text-sm">Upload product photo</strong>
+                            <span class="mt-2 block text-xs leading-5 text-white/42">Input 1 for the product image.</span>
+                          </div>
+                        </template>
+                        <span class="upload-chip" x-show="fileName" x-text="fileName"></span>
+                      </label>
+
+                      <label class="photoshoot-upload-card" x-show="needsModelInput" x-transition>
+                        <input class="ds-sr-only" type="file" accept="image/*" @change="handleModelFile($event)">
+                        <template x-if="modelPreviewUrl">
+                          <img class="upload-preview" :src="modelPreviewUrl" alt="Model photo preview">
+                        </template>
+                        <template x-if="!modelPreviewUrl">
+                          <div class="grid place-items-center text-center">
+                            <span class="grid size-12 place-items-center rounded-2xl border border-white/10 bg-white/[0.08] text-2xl">+</span>
+                            <strong class="mt-4 block text-sm">Upload model photo</strong>
+                            <span class="mt-2 block text-xs leading-5 text-white/42">Input 2 for the model reference.</span>
+                          </div>
+                        </template>
+                        <span class="upload-chip" x-show="modelFileName" x-text="modelFileName"></span>
+                      </label>
+                    </div>
+                  </div>
+
+                  <div class="model-panel" x-show="isModelMode" x-transition>
+                    <div class="model-segment" role="tablist" aria-label="AI model mode">
+                      <template x-for="flow in modelFlows" :key="flow">
+                        <button type="button" role="tab" :aria-selected="modelFlow === flow" :class="modelFlow === flow ? 'is-active' : ''" @click="modelFlow = flow; resultReady = false; generatedResults = []" x-text="flow"></button>
+                      </template>
+                    </div>
+
+                    <div class="model-info-banner">
+                      <span>i</span>
+                      <p>Describe the model you want, or let AI create the perfect model for your campaign.</p>
+                    </div>
+
+                    <div class="ds-field">
+                      <label class="ds-label">Model settings</label>
+                      <select class="model-select" x-model="modelPreset" @change="resultReady = false; generatedResults = []">
+                        <template x-for="preset in modelPresets" :key="preset">
+                          <option :value="preset" x-text="preset"></option>
+                        </template>
+                      </select>
+                    </div>
+
+                    <label class="generator-upload model-pose-upload" x-show="modelFlow === 'Change Pose'" x-transition :class="dragging ? 'is-dragging' : ''" @dragover.prevent="dragging = true" @dragleave.prevent="dragging = false" @drop.prevent="handleDrop($event)">
+                      <input class="ds-sr-only" type="file" accept="image/*" @change="handleFile($event)">
+                      <template x-if="previewUrl">
+                        <img class="upload-preview" :src="previewUrl" alt="Pose reference preview">
+                      </template>
+                      <template x-if="!previewUrl">
+                        <div class="grid place-items-center text-center">
+                          <span class="grid size-14 place-items-center rounded-2xl border border-white/10 bg-white/[0.08] text-2xl">+</span>
+                          <strong class="mt-4 block text-base">Upload pose reference</strong>
+                          <span class="mt-2 block max-w-sm text-sm leading-6 text-white/45">Optional reference for body angle, pose, outfit direction, or campaign framing.</span>
+                        </div>
+                      </template>
+                      <span class="upload-chip" x-show="fileName" x-text="fileName"></span>
+                    </label>
+                  </div>
+
+                  <div class="grid gap-5">
+                    <div class="ds-field">
+                      <label class="ds-label" for="prompt" x-text="isMergeMode ? 'Instructions' : (isPhotoshootMode ? 'Optional direction' : 'Model description')"></label>
+                      <textarea id="prompt" class="ds-textarea" x-model="prompt" :placeholder="isMergeMode ? 'Example: Create a premium product lifestyle photo. Keep the model smiling naturally while holding the product clearly. Use soft studio lighting and realistic proportions.' : (isPhotoshootMode ? 'Example: Create clean studio, lifestyle table setup, campaign close-up, and premium ecommerce hero variations.' : 'Example: Editorial studio photo of a confident female model wearing a taupe blazer and ivory silk top, natural skin texture, calm expression, soft grey flat background, premium fashion campaign.')"></textarea>
+                    </div>
+                  </div>
+
+                  <div class="grid gap-5">
+                    <div class="ds-field">
+                      <label class="ds-label">Aspect ratio</label>
+                      <div class="selector-grid aspect-grid">
+                        <template x-for="ratio in ratios" :key="ratio">
+                          <button class="selector-chip" :class="aspectRatio === ratio ? 'is-active' : ''" type="button" @click="aspectRatio = ratio" x-text="ratio"></button>
+                        </template>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="rounded-3xl border border-white/10 bg-white/[0.045] p-4" x-show="errorMessage" x-transition>
+                    <p class="text-sm font-semibold text-rose-300">Generation error</p>
+                    <p class="mt-1 text-sm leading-6 text-white/55" x-text="errorMessage"></p>
+                  </div>
+
+                  <button class="ds-btn ds-btn-primary ds-btn-lg w-full sm:w-auto" type="submit" :disabled="processing">
+                    <span x-text="processing ? 'Processing...' : (isMergeMode ? 'Create Variations' : (isPhotoshootMode ? 'Create Photoshoot' : (isModelMode ? 'Create AI Model' : 'Generate image')))"></span>
+                  </button>
+                </form>
+              </article>
+
+              <article class="fx-reflect processing-card ds-card" x-show="processing || progress > 0" x-transition>
+                <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+                  <div>
+                    <h2 class="ds-card-title">AI Processing</h2>
+                    <p class="ds-card-description" x-text="processingLabel"></p>
+                  </div>
+                  <div class="processing-orbit" aria-hidden="true"></div>
+                </div>
+                <div class="mt-6 h-3 overflow-hidden rounded-full bg-white/10">
+                  <div class="progress-fill h-full rounded-full" :style="`width:${progress}%`"></div>
+                </div>
+                <div class="mt-3 flex items-center justify-between text-xs text-white/45">
+                  <span>Neural render queue</span>
+                  <span x-text="`${progress}%`"></span>
+                </div>
+              </article>
+
+              <article class="ds-card">
+                <div class="ds-card-header">
+                  <div>
+                    <h2 class="ds-card-title">Render Settings</h2>
+                    <p class="ds-card-description">Current generation configuration.</p>
+                  </div>
+                </div>
+                <dl class="grid gap-3 text-sm">
+                  <div class="settings-row"><dt>Category</dt><dd x-text="selectedCategory"></dd></div>
+                  <div class="settings-row"><dt>Style</dt><dd x-text="isPhotoshootMode ? photoshootStyle : (isModelMode ? modelPreset : 'Multi-image blend')"></dd></div>
+                  <div class="settings-row" x-show="isModelMode"><dt>Mode</dt><dd x-text="modelFlow"></dd></div>
+                  <div class="settings-row"><dt>Aspect</dt><dd x-text="aspectRatio"></dd></div>
+                  <div class="settings-row"><dt>Quality</dt><dd>HD</dd></div>
+                  <div class="settings-row"><dt>Credits</dt><dd>24 / render</dd></div>
+                </dl>
+              </article>
+            </section>
+
+            <aside class="grid gap-6">
+              <article class="fx-reflect ds-card result-panel">
+                <div class="ds-card-header">
+                  <div>
+                    <h2 class="ds-card-title">Result Preview</h2>
+                    <p class="ds-card-description">Generated results appear here automatically after processing.</p>
+                  </div>
+                  <span class="ds-badge" :class="resultReady ? 'ds-badge-success' : 'ds-badge-info'" x-text="resultReady ? 'Ready' : 'Waiting'"></span>
+                </div>
+
+                <div class="merge-result-shell">
+                  <div class="merge-result-empty" x-show="!resultReady && !processing">
+                    <span class="grid size-16 place-items-center rounded-2xl border border-white/10 bg-white/[0.08] text-xl">AI</span>
+                    <p class="mt-4 text-sm font-semibold">Waiting for generation</p>
+                    <p class="mt-2 max-w-xs text-center text-xs leading-5 text-white/42">Complete the input controls and start processing.</p>
+                  </div>
+                  <div class="merge-result-grid" x-show="processing">
+                    <template x-for="index in 4" :key="index">
+                      <div class="merge-result-card fx-skeleton"></div>
+                    </template>
+                  </div>
+                  <div class="merge-result-grid" x-show="resultReady" x-transition>
+                    <template x-for="result in generatedResults" :key="result.id">
+                      <article class="merge-result-card" @click="previewResult(result)" tabindex="0" role="button" @keydown.enter.prevent="previewResult(result)" @keydown.space.prevent="previewResult(result)">
+                        <div class="merge-result-art" :class="result.art"></div>
+                        <div class="merge-result-actions">
+                          <button type="button" @click.stop="downloadResult(result)" aria-label="Download result">&#8681;</button>
+                          <button type="button" @click.stop="shareResult(result)" aria-label="Share result">&#8599;</button>
+                          <button type="button" @click.stop="previewResult(result)" aria-label="Zoom result">&#8981;</button>
+                        </div>
+                      </article>
+                    </template>
+                  </div>
+                </div>
+              </article>
+
+            </aside>
+          </div>
+        </main>
+      </div>
+    </div>
+
+    <div class="toast" x-show="toast.show" x-transition x-cloak>
+      <span class="toast-dot" :class="toast.type === 'error' ? 'is-error' : ''"></span>
+      <div>
+        <p class="text-sm font-semibold" x-text="toast.title"></p>
+        <p class="mt-1 text-xs text-white/50" x-text="toast.message"></p>
+      </div>
+    </div>
+
+    <div class="preview-modal" x-show="previewModal.open" x-transition.opacity x-cloak @keydown.escape.window="closePreview">
+      <button class="preview-modal-close" type="button" @click="closePreview" aria-label="Close preview">&times;</button>
+      <div class="preview-modal-frame">
+        <div class="preview-modal-art" :class="previewModal.result ? previewModal.result.art : ''"></div>
+      </div>
+    </div>
+
+    <nav class="mobile-bottom-nav lg:hidden" aria-label="Mobile generator navigation">
+      <a href="/dashboard/index.html"><span>D</span><span>Home</span></a>
+      <a class="is-active" href="/dashboard/generate-ai.html"><span>G</span><span>Generate</span></a>
+      <button type="button" @click="sidebarOpen = true"><span>M</span><span>Menu</span></button>
+    </nav>
+  </body>
+</html>
