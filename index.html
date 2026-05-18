@@ -22,9 +22,9 @@
     <meta name="twitter:description" content="Buat visual AI premium untuk brand, kreator, dan bisnis dalam satu studio kreatif.">
     <meta name="twitter:image" content="https://devsora.com/assets/images/brand/og-cover.svg">
     
-    <link rel="icon" href="/assets/icons/favicon.png" type="image/png">
-    <link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png">
-    <link rel="manifest" href="/site.webmanifest">
+    <link rel="icon" href="/devsora/assets/icons/favicon.png" type="image/png">
+    <link rel="apple-touch-icon" href="/devsora/assets/icons/apple-touch-icon.png">
+    <link rel="manifest" href="/devsora/site.webmanifest">
     <link rel="preconnect" href="https://cdn.tailwindcss.com">
     <link rel="preconnect" href="https://unpkg.com">
     <script src="https://cdn.tailwindcss.com"></script>
@@ -60,15 +60,15 @@
         },
       };
     </script>
-    <link rel="stylesheet" href="/assets/css/design-system.css">
-    <link rel="stylesheet" href="/assets/css/component.css">
-    <link rel="stylesheet" href="/assets/css/style.css">
-    <script defer src="/assets/js/app.js"></script>
+    <link rel="stylesheet" href="/devsora/assets/css/design-system.css">
+    <link rel="stylesheet" href="/devsora/assets/css/component.css">
+    <link rel="stylesheet" href="/devsora/assets/css/style.css">
+    <script defer src="/devsora/assets/js/app.js"></script>
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
-      <link rel="stylesheet" href="/assets/css/effects.css">
-    <link rel="stylesheet" href="/assets/css/mobile.css">
-    <script defer src="/assets/js/effects.js"></script>
-    <script defer src="/assets/js/mobile.js"></script>
+      <link rel="stylesheet" href="/devsora/assets/css/effects.css">
+    <link rel="stylesheet" href="/devsora/assets/css/mobile.css">
+    <script defer src="/devsora/assets/js/effects.js"></script>
+    <script defer src="/devsora/assets/js/mobile.js"></script>
   </head>
   <body class="min-h-screen overflow-x-hidden bg-carbon font-sans text-white antialiased" x-data="devsoraLanding()">
     <div class="site-ambient" aria-hidden="true"></div>
@@ -78,7 +78,7 @@
       <nav class="mx-auto flex min-h-20 max-w-7xl items-center justify-between px-5 sm:px-6 lg:px-8" aria-label="Primary navigation">
         <a href="#home" class="group flex items-center gap-3" aria-label="DEVSORA home">
           <span class="grid size-10 place-items-center rounded-xl border border-white/15 bg-white/10 shadow-glow backdrop-blur-xl">
-            <img class="brand-logo-img" src="/assets/images/brand/devsora-logo.png" alt="" loading="eager" decoding="async" width="40" height="40">
+            <img class="brand-logo-img" src="/devsora/assets/images/brand/devsora-logo.png" alt="" loading="eager" decoding="async" width="40" height="40">
           </span>
           <span class="text-lg font-semibold tracking-[0.18em] text-white">DEVSORA</span>
         </a>
@@ -100,8 +100,8 @@
               <button type="button" @click="setLanguage('en')"><span class="flag-icon flag-us"></span><b>EN</b></button>
             </div>
           </div>
-          <a class="rounded-full px-5 py-3 text-sm font-semibold text-white/75 transition hover:text-white" href="/auth/login.html" x-text="copy.nav.login">Masuk</a>
-          <a class="glow-button rounded-full px-5 py-3 text-sm font-semibold text-white" href="/auth/register.html" x-text="copy.nav.cta">Mulai Membuat</a>
+          <a class="rounded-full px-5 py-3 text-sm font-semibold text-white/75 transition hover:text-white" href="/devsora/auth/login.html" x-text="copy.nav.login">Masuk</a>
+          <a class="glow-button rounded-full px-5 py-3 text-sm font-semibold text-white" href="/devsora/auth/register.html" x-text="copy.nav.cta">Mulai Membuat</a>
         </div>
 
         <button class="grid size-11 place-items-center rounded-full border border-white/10 bg-white/10 backdrop-blur-xl lg:hidden" type="button" @click="mobileOpen = !mobileOpen" :aria-expanded="mobileOpen.toString()" aria-label="Toggle menu">
@@ -127,8 +127,8 @@
         <a class="mobile-link" href="#home" @click="mobileOpen = false" x-text="copy.nav.home">Beranda</a>
         <a class="mobile-link" href="#tools" @click="mobileOpen = false" x-text="copy.nav.tools">Alat AI</a>
         <a class="mobile-link" href="#pricing" @click="mobileOpen = false" x-text="copy.nav.pricing">Harga</a>
-        <a class="mobile-link" href="/auth/login.html" x-text="copy.nav.login">Masuk</a>
-        <a class="mt-2 block rounded-2xl bg-gradient-to-r from-neon to-electric px-4 py-3 text-center text-sm font-semibold" href="/auth/register.html" x-text="copy.nav.cta">Mulai Membuat</a>
+        <a class="mobile-link" href="/devsora/auth/login.html" x-text="copy.nav.login">Masuk</a>
+        <a class="mt-2 block rounded-2xl bg-gradient-to-r from-neon to-electric px-4 py-3 text-center text-sm font-semibold" href="/devsora/auth/register.html" x-text="copy.nav.cta">Mulai Membuat</a>
       </div>
     </header>
 
@@ -146,7 +146,7 @@
             </h1>
             <p class="mt-7 max-w-2xl text-base leading-8 text-white/64 sm:text-lg" x-text="copy.hero.description"></p>
             <div class="mt-9 flex flex-col gap-4 sm:flex-row">
-              <a class="glow-button inline-flex min-h-14 items-center justify-center rounded-full px-7 text-sm font-semibold text-white" href="/auth/register.html" x-text="copy.hero.primary">Buat gambar pertama</a>
+              <a class="glow-button inline-flex min-h-14 items-center justify-center rounded-full px-7 text-sm font-semibold text-white" href="/devsora/auth/register.html" x-text="copy.hero.primary">Buat gambar pertama</a>
               <a class="inline-flex min-h-14 items-center justify-center rounded-full border border-white/12 bg-white/[0.06] px-7 text-sm font-semibold text-white/86 backdrop-blur-xl transition hover:border-white/24 hover:bg-white/[0.1]" href="#tools" x-text="copy.hero.secondary">Lihat alat AI</a>
             </div>
             <div class="mt-10 grid max-w-2xl grid-cols-3 gap-4">
@@ -259,7 +259,7 @@
                 <span class="pb-1 text-sm text-white/45" x-text="plan.period"></span>
               </div>
               <p class="mt-4 min-h-12 text-sm leading-6 text-white/52" x-text="plan.text"></p>
-              <a class="mt-7 inline-flex min-h-12 w-full items-center justify-center rounded-2xl text-sm font-semibold transition" :class="plan.featured ? 'glow-button' : 'border border-white/12 bg-white/[0.06] text-white hover:bg-white/[0.1]'" href="/auth/register.html" x-text="plan.cta"></a>
+              <a class="mt-7 inline-flex min-h-12 w-full items-center justify-center rounded-2xl text-sm font-semibold transition" :class="plan.featured ? 'glow-button' : 'border border-white/12 bg-white/[0.06] text-white hover:bg-white/[0.1]'" href="/devsora/auth/register.html" x-text="plan.cta"></a>
               <ul class="mt-7 grid gap-3 text-sm text-white/62">
                 <template x-for="feature in plan.features" :key="feature">
                   <li class="flex gap-3"><span class="text-electric">✦</span><span x-text="feature"></span></li>
@@ -295,15 +295,15 @@
       <div class="mx-auto grid max-w-7xl gap-10 lg:grid-cols-[1fr_auto]">
         <div>
           <div class="flex items-center gap-3">
-            <span class="grid size-10 place-items-center rounded-xl border border-white/15 bg-white/10"><img class="brand-logo-img" src="/assets/images/brand/devsora-logo.png" alt="" loading="eager" decoding="async" width="40" height="40"></span>
+            <span class="grid size-10 place-items-center rounded-xl border border-white/15 bg-white/10"><img class="brand-logo-img" src="/devsora/assets/images/brand/devsora-logo.png" alt="" loading="eager" decoding="async" width="40" height="40"></span>
             <span class="text-lg font-semibold tracking-[0.18em]">DEVSORA</span>
           </div>
           <p class="mt-5 max-w-md text-sm leading-7 text-white/50" x-text="copy.footer.description">Platform visual kreatif AI premium untuk tim produk, seller, agensi, dan kreator.</p>
         </div>
         <div class="grid grid-cols-2 gap-10 text-sm sm:grid-cols-3">
           <div class="grid gap-3 text-white/50"><strong class="text-white" x-text="copy.footer.platform">Platform</strong><a href="#tools" x-text="copy.footer.tools">Alat AI</a><a href="#showcase" x-text="copy.footer.showcase">Showcase</a><a href="#pricing" x-text="copy.footer.pricing">Harga</a></div>
-          <div class="grid gap-3 text-white/50"><strong class="text-white" x-text="copy.footer.account">Akun</strong><a href="/auth/login.html" x-text="copy.footer.login">Masuk</a><a href="/auth/register.html" x-text="copy.footer.register">Daftar</a><a href="/dashboard/index.html" x-text="copy.footer.dashboard">Dashboard</a></div>
-          <div class="grid gap-3 text-white/50"><strong class="text-white" x-text="copy.footer.legal">Legal</strong><a href="/pages/legal/privacy.html" x-text="copy.footer.privacy">Privasi</a><a href="/pages/legal/terms.html" x-text="copy.footer.terms">Ketentuan</a></div>
+          <div class="grid gap-3 text-white/50"><strong class="text-white" x-text="copy.footer.account">Akun</strong><a href="/devsora/auth/login.html" x-text="copy.footer.login">Masuk</a><a href="/devsora/auth/register.html" x-text="copy.footer.register">Daftar</a><a href="/devsora/dashboard/index.html" x-text="copy.footer.dashboard">Dashboard</a></div>
+          <div class="grid gap-3 text-white/50"><strong class="text-white" x-text="copy.footer.legal">Legal</strong><a href="/devsora/pages/legal/privacy.html" x-text="copy.footer.privacy">Privasi</a><a href="/devsora/pages/legal/terms.html" x-text="copy.footer.terms">Ketentuan</a></div>
         </div>
       </div>
       <div class="mx-auto mt-10 grid max-w-7xl gap-3 border-t border-white/10 pt-6 text-xs text-white/38 sm:grid-cols-3 sm:items-center">
@@ -317,7 +317,7 @@
       <a class="is-active" href="#home"><span>H</span><span x-text="copy.mobile.home">Beranda</span></a>
       <a href="#tools"><span>A</span><span x-text="copy.mobile.tools">Alat AI</span></a>
       <a href="#showcase"><span>S</span><span x-text="copy.mobile.showcase">Showcase</span></a>
-      <a href="/auth/login.html"><span>L</span><span x-text="copy.mobile.login">Masuk</span></a>
+      <a href="/devsora/auth/login.html"><span>L</span><span x-text="copy.mobile.login">Masuk</span></a>
     </nav>
   </body>
 </html>

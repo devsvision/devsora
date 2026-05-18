@@ -1,7 +1,7 @@
 export const routes = {
-  home: '/',
-  login: '/auth/login.html',
-  register: '/auth/register.html',
-  dashboard: '/dashboard/index.html',
-  projects: '/dashboard/projects/index.html',
+  home: '/devsora/',
+  login: '/devsora/auth/login.html',
+  register: '/devsora/auth/register.html',
+  dashboard: '/devsora/dashboard/index.html',
+  projects: '/devsora/dashboard/projects/index.html',
 };

@@ -2,24 +2,24 @@
   "name": "DEVSORA",
   "short_name": "DEVSORA",
   "description": "Premium AI creative visual platform for Merge Photos, Product Photoshoot, and AI Model Photo.",
-  "start_url": "/",
-  "scope": "/",
+  "start_url": "/devsora/",
+  "scope": "/devsora/",
   "display": "standalone",
   "background_color": "#05050a",
   "theme_color": "#05050a",
   "icons": [
     {
-      "src": "/assets/icons/favicon-32.png",
+      "src": "/devsora/assets/icons/favicon-32.png",
       "sizes": "32x32",
       "type": "image/png"
     },
     {
-      "src": "/assets/icons/favicon.png",
+      "src": "/devsora/assets/icons/favicon.png",
       "sizes": "64x64",
       "type": "image/png"
     },
     {
-      "src": "/assets/icons/apple-touch-icon.png",
+      "src": "/devsora/assets/icons/apple-touch-icon.png",
       "sizes": "180x180",
       "type": "image/png",
       "purpose": "any maskable"

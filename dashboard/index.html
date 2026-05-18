@@ -6,9 +6,9 @@
     <title>Dashboard - DEVSORA AI Platform</title>
     <meta name="robots" content="noindex, nofollow">
     
-    <link rel="icon" href="/assets/icons/favicon.png" type="image/png">
-    <link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png">
-    <link rel="manifest" href="/site.webmanifest">
+    <link rel="icon" href="/devsora/assets/icons/favicon.png" type="image/png">
+    <link rel="apple-touch-icon" href="/devsora/assets/icons/apple-touch-icon.png">
+    <link rel="manifest" href="/devsora/site.webmanifest">
     <link rel="preconnect" href="https://cdn.tailwindcss.com">
     <link rel="preconnect" href="https://unpkg.com">
     <script src="https://cdn.tailwindcss.com"></script>
@@ -33,15 +33,15 @@
         },
       };
     </script>
-    <link rel="stylesheet" href="/assets/css/design-system.css">
-    <link rel="stylesheet" href="/assets/css/component.css">
-    <link rel="stylesheet" href="/assets/css/dashboard.css">
-    <script defer src="/assets/js/dashboard.js"></script>
+    <link rel="stylesheet" href="/devsora/assets/css/design-system.css">
+    <link rel="stylesheet" href="/devsora/assets/css/component.css">
+    <link rel="stylesheet" href="/devsora/assets/css/dashboard.css">
+    <script defer src="/devsora/assets/js/dashboard.js"></script>
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
-      <link rel="stylesheet" href="/assets/css/effects.css">
-    <link rel="stylesheet" href="/assets/css/mobile.css">
-    <script defer src="/assets/js/effects.js"></script>
-    <script defer src="/assets/js/mobile.js"></script>
+      <link rel="stylesheet" href="/devsora/assets/css/effects.css">
+    <link rel="stylesheet" href="/devsora/assets/css/mobile.css">
+    <script defer src="/devsora/assets/js/effects.js"></script>
+    <script defer src="/devsora/assets/js/mobile.js"></script>
   </head>
   <body class="ds-bg-ambient min-h-screen overflow-x-hidden text-white antialiased" x-data="devsoraDashboard()">
     <div class="dashboard-noise" aria-hidden="true"></div>
@@ -50,8 +50,8 @@
     <div class="min-h-screen lg:grid lg:grid-cols-[18rem_1fr]">
       <aside class="dashboard-sidebar fixed inset-y-0 left-0 z-50 w-72 -translate-x-full transition-transform duration-300 lg:sticky lg:top-0 lg:translate-x-0" :class="sidebarOpen ? 'translate-x-0' : '-translate-x-full'">
         <div class="flex min-h-screen flex-col p-5">
-          <a class="ds-brand" href="/dashboard/index.html" aria-label="DEVSORA dashboard">
-            <span class="ds-brand-mark"><img class="brand-logo-img" src="/assets/images/brand/devsora-logo.png" alt="" loading="eager" decoding="async" width="40" height="40"></span>
+          <a class="ds-brand" href="/devsora/dashboard/index.html" aria-label="DEVSORA dashboard">
+            <span class="ds-brand-mark"><img class="brand-logo-img" src="/devsora/assets/images/brand/devsora-logo.png" alt="" loading="eager" decoding="async" width="40" height="40"></span>
             <span>DEVSORA</span>
           </a>
 
@@ -191,7 +191,7 @@
                     <h2 class="ds-card-title">Recent Projects</h2>
                     <p class="ds-card-description">Latest creative workspaces across product, headshot, and wedding campaigns.</p>
                   </div>
-                  <a class="ds-btn ds-btn-secondary ds-btn-sm" href="/dashboard/projects/index.html">View all</a>
+                  <a class="ds-btn ds-btn-secondary ds-btn-sm" href="/devsora/dashboard/projects/index.html">View all</a>
                 </div>
                 <div class="grid gap-3 md:grid-cols-3">
                   <template x-for="project in projects" :key="project.name">
@@ -254,9 +254,9 @@
     </div>
 
     <nav class="mobile-bottom-nav lg:hidden" aria-label="Mobile dashboard navigation">
-      <a class="is-active" href="/dashboard/index.html"><span>D</span><span>Home</span></a>
-      <a href="/dashboard/generate-ai.html"><span>G</span><span>Generate</span></a>
-      <a href="/dashboard/projects/index.html"><span>P</span><span>Projects</span></a>
+      <a class="is-active" href="/devsora/dashboard/index.html"><span>D</span><span>Home</span></a>
+      <a href="/devsora/dashboard/generate-ai.html"><span>G</span><span>Generate</span></a>
+      <a href="/devsora/dashboard/projects/index.html"><span>P</span><span>Projects</span></a>
       <button type="button" @click="sidebarOpen = true"><span>M</span><span>Menu</span></button>
     </nav>
   </body>
