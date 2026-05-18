@@ -53,7 +53,7 @@ function devsoraLanding() {
         text: 'Create polished visual options with consistent lighting, composition, and brand-ready finishing.',
       },
       plans: [
-        { name: 'Free', price: 'Rp0', period: '/mo', text: 'For testing the studio and creating first AI visuals.', cta: 'Start Free', featured: false, features: ['25 credits', 'Basic exports', 'Watermarked exports'] },
+        { name: 'Free', price: 'Rp0', period: '/mo', text: 'For testing the studio and creating first AI visuals.', cta: 'Start Free', featured: false, features: ['1 project', 'Basic exports', 'Watermarked exports'] },
         { name: 'Pro', price: 'Rp299.000', period: '/mo', text: 'For creators, sellers, and teams producing visual campaigns weekly.', cta: 'Go Pro', featured: true, features: ['1,200 credits', '4K exports', 'Commercial license', 'Priority queue'] },
         { name: 'Lifetime', price: 'Rp2.399.000', period: 'once', text: 'For early adopters who want long-term creative production access.', cta: 'Get Lifetime', featured: false, features: ['Lifetime workspace', 'Premium workflow access', 'Bonus credit packs'] },
       ],
@@ -140,7 +140,7 @@ function devsoraLanding() {
         text: 'Buat pilihan visual yang rapi dengan pencahayaan konsisten, komposisi matang, dan finishing siap brand.',
       },
       plans: [
-        { name: 'Gratis', price: 'Rp0', period: '/bln', text: 'Untuk mencoba studio dan membuat visual AI pertama.', cta: 'Mulai Gratis', featured: false, features: ['25 kredit', 'Ekspor dasar', 'Ekspor dengan watermark'] },
+        { name: 'Gratis', price: 'Rp0', period: '/bln', text: 'Untuk mencoba studio dan membuat visual AI pertama.', cta: 'Mulai Gratis', featured: false, features: ['1 project', 'Ekspor dasar', 'Ekspor dengan watermark'] },
         { name: 'Pro', price: 'Rp299.000', period: '/bln', text: 'Untuk kreator, seller, dan tim yang memproduksi kampanye visual mingguan.', cta: 'Pilih Pro', featured: true, features: ['1.200 kredit', 'Ekspor 4K', 'Lisensi komersial', 'Antrean prioritas'] },
         { name: 'Lifetime', price: 'Rp2.399.000', period: 'sekali bayar', text: 'Untuk early adopter yang ingin akses produksi kreatif jangka panjang.', cta: 'Ambil Lifetime', featured: false, features: ['Workspace seumur hidup', 'Akses workflow premium', 'Bonus paket kredit'] },
       ],
