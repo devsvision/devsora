@@ -142,7 +142,7 @@ function devsoraLanding() {
       plans: [
         { name: 'Gratis', price: 'Rp0', period: '/bln', text: 'Untuk mencoba studio dan membuat visual AI pertama.', cta: 'Mulai Gratis', featured: false, features: ['1 project', 'Ekspor dasar', 'Ekspor dengan watermark'] },
         { name: 'Pro', price: 'Rp75.000', period: '/bln', text: 'Untuk kreator, seller, dan tim yang memproduksi kampanye visual mingguan.', cta: 'Pilih Pro', featured: true, features: ['10 project', 'Ekspor 1080p HD', 'Ekspor tanpa watermark'] },
-        { name: 'Lifetime', price: 'Rp1.200.000', period: 'sekali bayar', text: 'Untuk early adopter yang ingin akses produksi kreatif jangka panjang.', cta: 'Ambil Lifetime', featured: false, features: ['Unlimited project', 'Ekspor HD/2K/4K', 'Bonis Fitur VIP'] },
+        { name: 'Lifetime', price: 'Rp1.200.000', period: 'sekali bayar', text: 'Untuk early adopter yang ingin akses produksi kreatif jangka panjang.', cta: 'Ambil Lifetime', featured: false, features: ['Unlimited project', 'Ekspor HD/2K/4K', 'Bonus Fitur VIP'] },
       ],
       faqs: [
         { q: 'Apakah DEVSORA perlu instal software?', a: 'Tidak. DEVSORA berjalan sebagai web app ringan dan bisa dipakai langsung dari browser modern.' },
