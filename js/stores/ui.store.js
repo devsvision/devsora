@@ -1,9 +1,9 @@
 export function appShell() {
   return {
     featuredTools: [
-      { slug: 'merge', kicker: 'Compose', name: 'Merge Photos', href: '/devsora/pages/features/gabung-foto.html', description: 'Gabungkan beberapa gambar menjadi satu visual kampanye.' },
-      { slug: 'photoshoot', kicker: 'Commerce', name: 'Product Photoshoot', href: '/devsora/dashboard/generate-ai.html', description: 'Buat skenario photoshoot profesional dari foto produk.' },
-      { slug: 'model', kicker: 'Portrait', name: 'AI Model Photo', href: '/devsora/pages/features/foto-model.html', description: 'Buat model AI profesional untuk visual brand.' },
+      { slug: 'merge', kicker: 'Compose', name: 'Merge Photos', href: 'pages/features/gabung-foto.html', description: 'Gabungkan beberapa gambar menjadi satu visual kampanye.' },
+      { slug: 'photoshoot', kicker: 'Commerce', name: 'Product Photoshoot', href: 'dashboard/generate-ai.html', description: 'Buat skenario photoshoot profesional dari foto produk.' },
+      { slug: 'model', kicker: 'Portrait', name: 'AI Model Photo', href: 'pages/features/foto-model.html', description: 'Buat model AI profesional untuk visual brand.' },
     ],
   };
 }

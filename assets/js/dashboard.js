@@ -9,12 +9,12 @@ function devsoraDashboard() {
     selectedStyle: 'Product Photoshoot',
     slider: 52,
     navItems: [
-      { label: 'Dashboard', href: '/devsora/dashboard/index.html', icon: 'D', active: true },
-      { label: 'Generate AI', href: '/devsora/dashboard/generate-ai.html', icon: 'G', active: false },
-      { label: 'My Projects', href: '/devsora/dashboard/projects/index.html', icon: 'P', active: false },
-      { label: 'Billing', href: '/devsora/dashboard/billing/index.html', icon: 'B', active: false },
-      { label: 'Settings', href: '/devsora/dashboard/settings/index.html', icon: 'S', active: false },
-      { label: 'Logout', href: '/devsora/auth/login.html', icon: 'L', active: false },
+      { label: 'Dashboard', href: 'dashboard/index.html', icon: 'D', active: true },
+      { label: 'Generate AI', href: 'dashboard/generate-ai.html', icon: 'G', active: false },
+      { label: 'My Projects', href: 'dashboard/projects/index.html', icon: 'P', active: false },
+      { label: 'Billing', href: 'dashboard/billing/index.html', icon: 'B', active: false },
+      { label: 'Settings', href: 'dashboard/settings/index.html', icon: 'S', active: false },
+      { label: 'Logout', href: 'auth/login.html', icon: 'L', active: false },
     ],
     heroMetrics: [
       { label: 'exports', value: '392' },

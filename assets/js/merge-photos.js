@@ -18,11 +18,11 @@ function devsoraMergePhotos() {
       message: '',
     },
     navItems: [
-      { label: 'Dashboard', href: '/devsora/dashboard/index.html', icon: 'D', active: false },
-      { label: 'Merge Photos', href: '/devsora/dashboard/merge-photos.html', icon: 'M', active: true },
-      { label: 'Generate AI', href: '/devsora/dashboard/generate-ai.html', icon: 'G', active: false },
-      { label: 'My Projects', href: '/devsora/dashboard/projects/index.html', icon: 'P', active: false },
-      { label: 'Settings', href: '/devsora/dashboard/settings/index.html', icon: 'S', active: false },
+      { label: 'Dashboard', href: 'dashboard/index.html', icon: 'D', active: false },
+      { label: 'Merge Photos', href: 'dashboard/merge-photos.html', icon: 'M', active: true },
+      { label: 'Generate AI', href: 'dashboard/generate-ai.html', icon: 'G', active: false },
+      { label: 'My Projects', href: 'dashboard/projects/index.html', icon: 'P', active: false },
+      { label: 'Settings', href: 'dashboard/settings/index.html', icon: 'S', active: false },
     ],
     ratios: [
       { label: '1:1', value: '1:1' },
