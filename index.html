@@ -212,7 +212,9 @@
           <template x-for="tool in tools" :key="tool.title">
             <article class="glass-card glow-border group p-6">
               <div class="flex items-center justify-between">
-                <span class="grid size-12 place-items-center rounded-2xl bg-white/[0.08] text-xl" x-text="tool.icon"></span>
+                <span class="tool-thumb">
+                  <img :src="tool.image" :alt="tool.title" loading="lazy" decoding="async">
+                </span>
                 <span class="rounded-full border border-white/10 px-3 py-1 text-xs text-white/45">AI</span>
               </div>
               <h3 class="mt-7 text-xl font-semibold" x-text="tool.title"></h3>
@@ -230,8 +232,8 @@
         <div class="masonry mt-12">
           <template x-for="item in gallery" :key="item.title">
             <article class="gallery-card tilt-card" :class="item.size">
-              <div class="gallery-art" :class="item.gradient"></div>
-              <div class="absolute inset-x-0 bottom-0 p-5">
+              <img class="gallery-art" :src="item.image" :alt="item.title" loading="lazy" decoding="async">
+              <div class="absolute inset-x-0 bottom-0 z-10 p-5">
                 <p class="text-sm font-semibold" x-text="item.title"></p>
                 <p class="mt-1 text-xs text-white/50" x-text="item.caption"></p>
               </div>
@@ -239,10 +241,12 @@
           </template>
           <article class="before-after glass-card p-4">
             <div class="grid min-h-64 grid-cols-2 overflow-hidden rounded-3xl border border-white/10">
-              <div class="relative bg-[radial-gradient(circle_at_20%_10%,rgba(148,163,184,.42),transparent_35%),linear-gradient(135deg,#111827,#020617)]">
+              <div class="relative overflow-hidden">
+                <img class="compare-image" :src="copy.compare.beforeImage" alt="" loading="lazy" decoding="async">
                 <span class="compare-label" x-text="copy.compare.before">Sebelum</span>
               </div>
-              <div class="relative bg-[radial-gradient(circle_at_70%_20%,rgba(56,189,248,.5),transparent_32%),radial-gradient(circle_at_30%_70%,rgba(168,85,247,.5),transparent_35%),linear-gradient(135deg,#05050a,#111827)]">
+              <div class="relative overflow-hidden">
+                <img class="compare-image" :src="copy.compare.afterImage" alt="" loading="lazy" decoding="async">
                 <span class="compare-label" x-text="copy.compare.after">Sesudah</span>
               </div>
             </div>
