@@ -54,7 +54,7 @@ function devsoraLanding() {
       },
       plans: [
         { name: 'Free', price: 'Rp0', period: '/mo', text: 'For testing the studio and creating first AI visuals.', cta: 'Start Free', featured: false, features: ['1 project', 'Basic exports', 'Watermarked exports'] },
-        { name: 'Pro', price: 'Rp75.000', period: '/mo', text: 'For creators, sellers, and teams producing visual campaigns weekly.', cta: 'Go Pro', featured: true, features: ['10 projects', '1080p HD exports', 'Exports without watermark', 'Priority queue'] },
+        { name: 'Pro', price: 'Rp75.000', period: '/mo', text: 'For creators, sellers, and teams producing visual campaigns weekly.', cta: 'Go Pro', featured: true, features: ['10 projects', '1080p HD exports', 'Exports without watermark'] },
         { name: 'Lifetime', price: 'Rp1.200.000', period: 'once', text: 'For early adopters who want long-term creative production access.', cta: 'Get Lifetime', featured: false, features: ['Unlimited projects', 'HD/2K/4K exports', 'VIP feature bonus'] },
       ],
       faqs: [
@@ -141,7 +141,7 @@ function devsoraLanding() {
       },
       plans: [
         { name: 'Gratis', price: 'Rp0', period: '/bln', text: 'Untuk mencoba studio dan membuat visual AI pertama.', cta: 'Mulai Gratis', featured: false, features: ['1 project', 'Ekspor dasar', 'Ekspor dengan watermark'] },
-        { name: 'Pro', price: 'Rp75.000', period: '/bln', text: 'Untuk kreator, seller, dan tim yang memproduksi kampanye visual mingguan.', cta: 'Pilih Pro', featured: true, features: ['10 project', 'Ekspor 1080p HD', 'Ekspor tanpa watermark', 'Antrean prioritas'] },
+        { name: 'Pro', price: 'Rp75.000', period: '/bln', text: 'Untuk kreator, seller, dan tim yang memproduksi kampanye visual mingguan.', cta: 'Pilih Pro', featured: true, features: ['10 project', 'Ekspor 1080p HD', 'Ekspor tanpa watermark'] },
         { name: 'Lifetime', price: 'Rp1.200.000', period: 'sekali bayar', text: 'Untuk early adopter yang ingin akses produksi kreatif jangka panjang.', cta: 'Ambil Lifetime', featured: false, features: ['Unlimited project', 'Ekspor HD/2K/4K', 'Bonis Fitur VIP'] },
       ],
       faqs: [
